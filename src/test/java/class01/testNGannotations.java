@@ -14,7 +14,7 @@ public class testNGannotations {
         System.out.println("I am an after method");
     }
 
-    @Test
+    @Test(groups = "regression")
     public void AfirstTestCase(){
         System.out.println("I am the first test case");
     }

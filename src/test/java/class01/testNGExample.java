@@ -17,7 +17,7 @@ public class testNGExample {
     //enter username and password, verify we are logged in, and close the browser
 
     public static WebDriver driver;
-    @BeforeMethod//this is an example of a pre-condition of opening the website, maximizing screen, and implicit wait
+    @BeforeMethod(alwaysRun = true)//this is an example of a pre-condition of opening the website, maximizing screen, and implicit wait
     public void SetUpBrowser() {
         WebDriverManager.chromedriver().setup();
         driver=new ChromeDriver();
@@ -25,12 +25,13 @@ public class testNGExample {
        driver.manage().window().maximize();
        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
-    @AfterMethod//this is an example of a post condition of closing the browser after a testor all tests
+    @AfterMethod(alwaysRun = true)
+    //this is an example of a post condition of closing the browser after a testor all tests
     public void closeBrowser() throws InterruptedException {
         Thread.sleep(5000);
         driver.quit();
     }
-    @Test
+    @Test(groups = "regression")
     public void loginFunctionality(){
         WebElement username=driver.findElement(By.xpath("//input[@id='txtUsername']"));
         username.sendKeys("Admin");
